@@ -49,9 +49,8 @@ python3 main.py
 
 ![Uygulama](ekran_goruntusu.png)
 ## Bilinen sorunlar
- 
-- Kaydırı sıfırdan başlayarak kaydırılmıyor önce orta bir değere getirmek gerekiyor.
-- Resimler bazen olduğundan daha basık gözükebiliyor..
+
+- Resimler bazen olduğundan daha basık gözükebiliyor.
 
 ## Dosyalar
 

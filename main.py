@@ -13,22 +13,16 @@ class GoruntuUygulamasi(QWidget):
         self.setWindowTitle("Görüntü İşleme")
         self.resize(800, 500)
         
-        #resim aç buton oluşturalım
-        self.btn= QPushButton("Resim Aç", self) #parentına self yani bu pencereyi verdik show deyince pencereye buton da gelcek
-        self.btn.resize(150, 40)
-        self.btn.move(50, 480)
-        self.btn.clicked.connect(self.resim_ac)
-        
         #label yapalım orijinal için
         self.img1_lbl = QLabel(self)
         self.img1_lbl.move(20,30)
-        self.img1_lbl.resize(500,400)
+        self.img1_lbl.resize(520,400)
         self.img1_lbl.setStyleSheet("border: 1px solid blue;") #label kenarına 1 piksel kalınlığında mavi düz kenar çiz demek
         
         #label yeni resim için
         self.img2_lbl= 	QLabel(self)
         self.img2_lbl.move(650, 30)
-        self.img2_lbl.resize(500, 400)
+        self.img2_lbl.resize(520, 400)
         self.img2_lbl.setStyleSheet("border: 1px solid purple;")
         
         #bulanıklaştırma için slider oluşturcaz
@@ -44,31 +38,22 @@ class GoruntuUygulamasi(QWidget):
         
         self.slider_deger= QLabel("0", self)
         self.slider_deger.resize(50,25)
-        self.slider_deger.move(720,485)
+        self.slider_deger.move(710,485)
         
-        #grileştirme için buton
-        self.gray_btn= QPushButton("Grileştir" , self)
-        self.gray_btn.resize(150,40)
-        self.gray_btn.move(750,520)
-        self.gray_btn.clicked.connect(self.grilestir)
-        
-        #kenar bulma için buton
-        self.edge_btn= QPushButton("Kenar bul", self)
-        self.edge_btn.resize(150,40)
-        self.edge_btn.move(750,560)
-        self.edge_btn.clicked.connect(self.kenar_bul)
-        
-        #sıfırlama tuşu
-        self.restart_btn= QPushButton("görüntüyü sıfırla", self)
-        self.restart_btn.resize(150,40)
-        self.restart_btn.move(700, 600)
-        self.restart_btn.clicked.connect(self.sifirla)
-        
-        #kaydetme buton
-        self.save_btn= QPushButton("sonucu kaydet", self)
-        self.save_btn.resize(150,40)
-        self.save_btn.move(850, 600)
-        self.save_btn.clicked.connect(self.kaydet)
+        #grileştirme, resim açma, sıfırlama, kaydetme, kenar bulma butonları ekleme
+        self.btn= self.buton_olustur("Resim Aç", 50, 480, 150, 40, self.resim_ac)
+        self.gray_btn= self.buton_olustur("Grileştir", 750, 520, 150, 40, self.grilestir)
+        self.edge_btn=self.buton_olustur("Kenar Bul", 750, 570, 150, 40, self.kenar_bul)
+        self.restart_btn= self.buton_olustur("Sıfırla", 750, 620, 150, 40, self.sifirla)
+        self.save_btn= self.buton_olustur("Sonuç Kaydet", 750, 670, 150, 40, self.kaydet)
+
+    def buton_olustur(self, metin, x, y, genislik, yukseklik, slot=None):
+        btn = QPushButton(metin, self)
+        btn.move(x, y)
+        btn.resize(genislik, yukseklik)
+        if slot is not None:
+            btn.clicked.connect(slot)
+        return btn
         
          
     def resim_ac(self):
